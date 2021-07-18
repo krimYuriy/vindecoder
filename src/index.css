@@ -132,9 +132,11 @@ a {
   background-color: rgb(53, 170, 24);
   border: none;
   border-radius: 4px;
+  cursor: pointer;
 }
 
  .vin {
+   align-self: flex-start;
    background-color: #fff;
  }
 

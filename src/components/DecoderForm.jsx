@@ -1,11 +1,26 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import Button from './Button'
+import DecoderList from './DecoderList'
+import { useSelector } from 'react-redux'
 
-function DecoderForm() {
+function DecoderForm({ onLoad }) {
    const [input, setInput] = React.useState('')
+
+   const { VINVariables } = useSelector(({ VIN }) => VIN)
+
+   const submitHandler = e => {
+      e.preventDefault()
+
+      onLoad()
+   }
 
    return (
       <div className="decoder-form__wrapper">
-         <form className="decoder__form">
+         <form
+            className="decoder__form"
+            onSubmit={submitHandler}
+         >
             <label htmlFor="decoder-input">Enter VIN:</label>
             <input
                type="text"
@@ -14,13 +29,15 @@ function DecoderForm() {
                value={input}
                onChange={e => setInput(e.target.value)}
             />
-            <button type="submit" className="decoder__submit">Decode</button>
+            <Button type="submit" className="decoder__submit">Decode</Button>
          </form>
-         <div className="decoder__info">
-            API info
-         </div>
+         <DecoderList varList={VINVariables} />
       </div>
    )
+}
+
+DecoderForm.propTypes = {
+   onLoad: PropTypes.func.isRequired
 }
 
 export default DecoderForm
