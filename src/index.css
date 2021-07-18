@@ -167,4 +167,18 @@ a {
    background-color: #fff;
  }
 
+ .decoder__item {
+   padding: 5px 10px;
+   display: flex;
+   justify-content: space-between;
+   border-bottom: 1px solid #000;
+ }
+
+ .decoder__item:last-child {
+   border: none;
+ }
+
+ .decoder__item strong {
+   margin-right: 100px;
+ }
  

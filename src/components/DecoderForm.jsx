@@ -4,15 +4,17 @@ import Button from './Button'
 import DecoderList from './DecoderList'
 import { useSelector } from 'react-redux'
 
-function DecoderForm({ onLoad }) {
+function DecoderForm({ onLoad, onSetList }) {
    const [input, setInput] = React.useState('')
 
-   const { VINVariables } = useSelector(({ VIN }) => VIN)
+   const { isLoading, VINVariables } = useSelector(({ VIN }) => VIN)
 
    const submitHandler = e => {
       e.preventDefault()
 
-      onLoad()
+      onLoad(input)
+      onSetList(input)
+      setInput('')
    }
 
    return (
@@ -29,7 +31,7 @@ function DecoderForm({ onLoad }) {
                value={input}
                onChange={e => setInput(e.target.value)}
             />
-            <Button type="submit" className="decoder__submit">Decode</Button>
+            <Button type="submit" className="decoder__submit" disabled={isLoading}>Decode</Button>
          </form>
          <DecoderList varList={VINVariables} />
       </div>
