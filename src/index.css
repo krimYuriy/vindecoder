@@ -152,6 +152,11 @@ a {
    text-align: center;
  }
 
+ .vin p {
+   padding: 10px 20px;
+   text-align: center;
+ }
+
  .vin__list li {
    padding: 5px 10px;
    border: 1px solid #000;
@@ -181,4 +186,32 @@ a {
  .decoder__item strong {
    margin-right: 100px;
  }
+
+ .form-validator {
+   background-color: #fff;
+   padding: 0 20px 10px;
+   transform: translate(0, -20px);
+   text-align: center;
+   color: red;
+ }
+
+ .decoder__input-danger {
+   border: 1px solid rgb(226, 7, 7);
+ }
+
+ .info__list {
+   padding: 50px 0;
+ }
  
+ .info__list {
+   display: grid;
+   grid-template: auto/ repeat(3, minmax(200px, 1fr));
+   grid-gap: 15px;
+   align-items: center;
+ }
+
+ .info__list li {
+   font-size: 18px;
+   line-height: 24px;
+   font-weight: 700;
+ }

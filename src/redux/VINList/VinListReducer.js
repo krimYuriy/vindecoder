@@ -10,6 +10,7 @@ const VinListReducer = (state = initialState, action) => {
 
       if (currentList.length === 5) {
          currentList.pop()
+         currentList.unshift(action.payload)
       } else if (!currentList.includes(action.payload)) {
          currentList.unshift(action.payload)
       }
