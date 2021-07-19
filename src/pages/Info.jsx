@@ -1,23 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchInfo } from '../redux/Info/actions'
 
 function Info() {
-   const [data, setData] = useState([])
+   const dispatch = useDispatch()
+   const { infoVariables } = useSelector(({ info }) => info)
 
    useEffect(() => {
-      fetch('https://vpic.nhtsa.dot.gov/api/vehicles/getvehiclevariablelist?format=json')
-         .then(response => response.json())
-         .then(data => {
-            console.log(data)
-            setData(data.Results)
-         })
+      dispatch(fetchInfo())
    }, [])
 
    return (
       <div className="info">
          <div className="container">
             <ul className="info__list">
-               {data.map(item => (
-                  <li key={item.ID}>{item.Name}</li>
+               {infoVariables.map(item => (
+                  <li key={item.ID}><Link to={`/variables/${item.ID}`}>{item.Name}</Link></li>
                ))}
             </ul>
          </div>

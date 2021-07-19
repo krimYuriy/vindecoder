@@ -1,8 +1,9 @@
-import { LOAD_VIN, SET_LOADING } from "../types"
+import { LOAD_VIN, SET_LOADING, SET_MESSAGE } from "../types"
 
 const initialState = {
    VINVariables: [],
-   isLoading: false
+   isLoading: false,
+   message: ''
 }
 
 const VINReducer = (state = initialState, action) => {
@@ -17,6 +18,11 @@ const VINReducer = (state = initialState, action) => {
          return {
             ...state,
             isLoading: true
+         }
+      case SET_MESSAGE:
+         return {
+            ...state,
+            message: action.payload
          }
       default:
          return state

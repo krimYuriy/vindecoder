@@ -1,16 +1,19 @@
 import React from 'react'
+import { NavLink, Link } from 'react-router-dom'
 
 function Header() {
    return (
       <header className="header">
          <div className="container _header-container">
-            <div className="header__logo">
-               Decoder logo
-            </div>
+            <Link to="/">
+               <div className="header__logo">
+                  Decoder logo
+               </div>
+            </Link>
             <nav className="header__menu">
                <div className="header__list">
-                  <li><a href="" className="header__link">Vehicle Decoder</a></li>
-                  <li><a href="" className="header__link">Vehicle Info</a></li>
+                  <li><NavLink exact to="/" activeClassName="header__link-selected" className="header__link">Vehicle Decoder</NavLink></li>
+                  <li><NavLink to="/variables" activeClassName="header__link-selected" className="header__link">Vehicle Info</NavLink></li>
                </div>
             </nav>
          </div>

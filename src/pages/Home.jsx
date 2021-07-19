@@ -3,20 +3,23 @@ import DecoderForm from '../components/DecoderForm'
 import VINList from '../components/VINList'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchVIN } from '../redux/VIN/actions'
-import { setList } from '../redux/VINList/actions'
+import { selectVin, setList } from '../redux/VINList/actions'
 
 
 function Home() {
    const dispatch = useDispatch()
+   const { decodedVariables } = useSelector(({ decoded }) => decoded)
 
    const onVinLoading = input => {
       dispatch(fetchVIN(input))
+      dispatch(setList(input))
    }
 
-   const onSetVarList = variable => {
-      dispatch(setList(variable))
+
+   const onSelectValue = value => {
+      dispatch(selectVin(value))
+      dispatch(fetchVIN(value))
    }
-   const { decodedVariables } = useSelector(({ decoded }) => decoded)
 
    return (
       <div className="decoder">
@@ -24,9 +27,10 @@ function Home() {
             <div className="decoder-wrapper">
                <DecoderForm
                   onLoad={onVinLoading}
-                  onSetList={onSetVarList}
                />
-               <VINList varList={decodedVariables} />
+               <VINList
+                  varList={decodedVariables}
+                  onClick={onSelectValue} />
             </div>
          </div>
       </div>

@@ -2,10 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import DecoderItem from './DecoderItem';
 
-function DecoderList({ varList }) {
+function DecoderList({ varList, title }) {
 
    return (
       <div className="decoder__info">
+         <h2 className="decoder__title">{title}</h2>
          <ul className="decoder__list">
             {varList && varList.map(item => (
                <DecoderItem
@@ -20,10 +21,12 @@ function DecoderList({ varList }) {
 }
 
 DecoderList.propTypes = {
-   varList: PropTypes.arrayOf(PropTypes.object).isRequired
+   varList: PropTypes.arrayOf(PropTypes.object).isRequired,
+   title: PropTypes.string
 }
 
 DecoderList.defaultProps = {
-   varList: []
+   varList: [],
+   title: ''
 }
 export default DecoderList

@@ -3,30 +3,23 @@ import PropTypes from 'prop-types'
 import Button from './Button'
 import DecoderList from './DecoderList'
 import { useSelector } from 'react-redux'
-import Validator from './Validator'
 
-function DecoderForm({ onLoad, onSetList }) {
+
+function DecoderForm({ onLoad }) {
    const [input, setInput] = React.useState('')
-   const [val, setVal] = React.useState('')
 
-   const { isLoading, VINVariables } = useSelector(({ VIN }) => VIN)
+   const { isLoading, VINVariables, message } = useSelector(({ VIN }) => VIN)
+
+
 
    const submitHandler = e => {
       e.preventDefault()
 
-      if (!input) {
-         setVal('The field must not be empty')
-      } else if (input.length > 17) {
-         setVal('no more than 17 symbols')
-      } else if (input) {
+      if (input) {
          onLoad(input)
-         onSetList(input)
 
          setInput('')
-         setVal('')
-
       }
-
    }
 
 
@@ -39,21 +32,21 @@ function DecoderForm({ onLoad, onSetList }) {
             <label htmlFor="decoder-input">Enter VIN:</label>
             <input
                type="text"
-               className={val ? " decoder__input decoder__input-danger" : "decoder__input"}
+               className="decoder__input"
                id="decoder-input"
                value={input}
                onChange={e => setInput(e.target.value)}
+               pattern="^[a-zA-Z0-9]+$"
+               required
+               maxLength="17"
             />
             <Button type="submit" className="decoder__submit" disabled={isLoading}>Decode</Button>
-            {
 
-            }
+
          </form>
+
          {
-            val && <Validator valText={val} />
-         }
-         {
-            VINVariables.length ? <DecoderList varList={VINVariables} /> : ''
+            VINVariables.length ? <DecoderList varList={VINVariables} title={message} /> : ''
          }
 
       </div>

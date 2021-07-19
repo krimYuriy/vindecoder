@@ -1,3 +1,6 @@
 export const LOAD_VIN = 'LOAD_VIN'
 export const SET_LOADING = 'SET_LOADING'
 export const SET_DECODED_VINS = 'SET_DECODED_VINS'
+export const SET_MESSAGE = 'SET_MESSAGE'
+export const SELECT_VIN = 'SELECT_VIN'
+export const LOAD_INFO = 'LOAD_INFO'

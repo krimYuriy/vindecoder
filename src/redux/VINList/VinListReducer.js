@@ -1,25 +1,33 @@
-import { SET_DECODED_VINS } from "../types"
+import { SELECT_VIN, SET_DECODED_VINS } from "../types"
 
 const initialState = {
-   decodedVariables: []
+   decodedVariables: [],
+   selectedVIN: ''
 }
 
 const VinListReducer = (state = initialState, action) => {
-   if (action.type === SET_DECODED_VINS) {
-      const currentList = [...state.decodedVariables]
+   switch (action.type) {
+      case SET_DECODED_VINS: {
+         const currentList = [...state.decodedVariables]
 
-      if (currentList.length === 5) {
-         currentList.pop()
-         currentList.unshift(action.payload)
-      } else if (!currentList.includes(action.payload)) {
-         currentList.unshift(action.payload)
+         if (currentList.length === 5) {
+            currentList.pop()
+            currentList.unshift(action.payload)
+         } else if (!currentList.includes(action.payload)) {
+            currentList.unshift(action.payload)
+         }
+         return {
+            ...state,
+            decodedVariables: currentList
+         }
       }
-      return {
-         ...state,
-         decodedVariables: currentList
-      }
-   } else {
-      return state
+      case SELECT_VIN:
+         return {
+            ...state,
+            selectedVIN: action.payload
+         }
+      default:
+         return state
    }
 }
 
