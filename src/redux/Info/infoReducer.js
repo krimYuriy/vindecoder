@@ -10,7 +10,7 @@ const infoReducer = (state = initialState, action) => {
       case LOAD_INFO:
          return {
             ...state,
-            infoVariables: action.payload,
+            infoVariables: [...action.payload],
             isLoaded: true
          }
 
