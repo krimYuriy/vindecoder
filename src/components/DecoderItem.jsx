@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 function DecoderItem({ variableName, variableValue }) {
    return (
@@ -7,6 +8,11 @@ function DecoderItem({ variableName, variableValue }) {
          <span>{variableValue}</span>
       </li>
    )
+}
+
+DecoderItem.propTypes = {
+   variableName: PropTypes.string,
+   variableValue: PropTypes.string
 }
 
 export default DecoderItem
