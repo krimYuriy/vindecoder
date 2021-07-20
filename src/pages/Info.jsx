@@ -9,7 +9,7 @@ function Info() {
 
    useEffect(() => {
       dispatch(fetchInfo())
-   }, [])
+   }, []) // eslint-disable-line
 
    return (
       <div className="info">
