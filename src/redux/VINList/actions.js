@@ -1,11 +1,11 @@
-import { SELECT_VIN, SET_DECODED_VINS } from "../types";
+import { CASH_VARIABLE, SET_DECODED_VINS } from "../types";
 
 export const setList = decodedVar => ({
    type: SET_DECODED_VINS,
    payload: decodedVar
 })
 
-export const selectVin = vin => ({
-   type: SELECT_VIN,
-   payload: vin
+export const cashVariables = (vin, variables) => ({
+   type: CASH_VARIABLE,
+   payload: [vin, variables]
 })

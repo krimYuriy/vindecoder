@@ -1,8 +1,8 @@
-import { SELECT_VIN, SET_DECODED_VINS } from "../types"
+import { CASH_VARIABLE, SET_DECODED_VINS } from "../types"
 
 const initialState = {
    decodedVariables: [],
-   selectedVIN: ''
+   cashedVar: {}
 }
 
 const VinListReducer = (state = initialState, action) => {
@@ -21,11 +21,15 @@ const VinListReducer = (state = initialState, action) => {
             decodedVariables: currentList
          }
       }
-      case SELECT_VIN:
+      case CASH_VARIABLE:
          return {
             ...state,
-            selectedVIN: action.payload
+            cashedVar: {
+               ...state.cashedVar,
+               [action.payload[0]]: action.payload[1]
+            }
          }
+
       default:
          return state
    }

@@ -1,4 +1,5 @@
 import { LOAD_VIN, SET_LOADING, SET_MESSAGE } from "../types";
+import { cashVariables } from "../VINList/actions";
 
 export const loadVin = varibles => ({
    type: LOAD_VIN,
@@ -16,6 +17,7 @@ export const fetchVIN = input => (dispatch) => {
    fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/${input}?format=json`)
       .then(response => response.json())
       .then(data => {
+         console.log(data);
 
          const results = data.Results
             .filter(item => item.Value
@@ -27,6 +29,7 @@ export const fetchVIN = input => (dispatch) => {
 
          dispatch(loadVin(results))
          dispatch(loadMessage(data.Message))
+         dispatch(cashVariables(input, results))
       })
 
    dispatch({
