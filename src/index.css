@@ -121,6 +121,10 @@ a {
   display: flex;
 }
 
+.decoder__input.invalid {
+  border: 2px solid red;
+}
+
 .decoder__form label {
   padding: 10px 20px;
   background-color: rgb(201, 190, 190);
@@ -134,9 +138,6 @@ a {
   margin-right: 10px;
 }
 
-.decoder__input:invalid {
-  border: 2px solid red;
-}
 
 
 .decoder__submit {
@@ -278,6 +279,14 @@ a {
   }
 
 }
+
+.validator {
+  background-color: #fff;
+  padding: 10px 20px;
+  transform: translate(0, -20px);
+}
+
+
 
 @media (max-width: 470px) {
   .decoder__form {

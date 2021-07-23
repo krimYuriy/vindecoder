@@ -10,7 +10,7 @@ const VinListReducer = (state = initialState, action) => {
       case SET_DECODED_VINS: {
          const currentList = [...state.decodedVariables]
 
-         if (currentList.length === 5) {
+         if (currentList.length === 5 && !currentList.includes(action.payload)) {
             currentList.pop()
             currentList.unshift(action.payload)
          } else if (!currentList.includes(action.payload)) {
@@ -26,7 +26,7 @@ const VinListReducer = (state = initialState, action) => {
             ...state,
             cashedVar: {
                ...state.cashedVar,
-               [action.payload[0]]: action.payload[1]
+               [action.payload[0]]: [action.payload[1], action.payload[2]]
             }
          }
 

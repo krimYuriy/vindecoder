@@ -5,7 +5,7 @@ export const setList = decodedVar => ({
    payload: decodedVar
 })
 
-export const cashVariables = (vin, variables) => ({
+export const cashVariables = (vin, variables, message) => ({
    type: CASH_VARIABLE,
-   payload: [vin, variables]
+   payload: [vin, variables, message]
 })

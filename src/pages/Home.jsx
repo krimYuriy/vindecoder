@@ -2,8 +2,8 @@ import React from 'react'
 import DecoderForm from '../components/DecoderForm'
 import VINList from '../components/VINList'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchVIN, loadVin } from '../redux/VIN/actions'
-import { setList } from '../redux/VINList/actions'
+import { fetchVIN, loadMessage, loadVin } from '../redux/VIN/actions'
+
 
 
 function Home() {
@@ -12,11 +12,11 @@ function Home() {
 
    const onVinLoading = input => {
       dispatch(fetchVIN(input))
-      dispatch(setList(input))
    }
 
    const onUseDecodedVin = vin => {
-      dispatch(loadVin(cashedVar[vin]))
+      dispatch(loadVin(cashedVar[vin][0]))
+      dispatch(loadMessage(cashedVar[vin][1]))
    }
 
    return (
